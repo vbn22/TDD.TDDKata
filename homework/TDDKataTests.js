@@ -1,16 +1,20 @@
 import assert from 'assert'
 
 
-
-function add(input){
+function delimiters(str){
     let result = 0;
-    if (input == ""){
-        return 0
-    }
-    for (let element of input.toString().split(',')){
+    for (let element of str.toString().split(/,|\n/)){
         result+= parseInt(element);
     }
-    return result
+    return result;
+}
+function add(str){
+    
+    if (str == ""){
+        return 0
+    }
+
+    return delimiters(str)
 }
 
 suite('String Calculator testing', function () {
@@ -47,6 +51,16 @@ suite('String Calculator testing', function () {
     suite('more that two init numbers',function(){
         test(' 1,2,3 value will return 6', function() {
             let input = "1,2,3";
+
+            let sum = add(input);
+
+            assert.equal(6, sum);
+        });
+    })
+
+    suite('new line delimiter',function(){
+        test(' 1\\n2,3 value will return 6', function() {
+            let input = "1\n2,3";
 
             let sum = add(input);
 
