@@ -48,7 +48,7 @@ suite('String Calculator testing', function () {
         test('for 1,2,3 as input string it will return 6', function() {
             let input = '1,2,3';
             let sum = add(input);
-            assert.equal(6, sum);
+            assert.equal(1+2+3, sum);
         });
     });
 
@@ -56,7 +56,7 @@ suite('String Calculator testing', function () {
         test('for //;\\n1;2;3 as input string it will return 6', function() {
             let input = '//;\n1;2';
             let sum = add(input);
-            assert.equal(3, sum);
+            assert.equal(1+2, sum);
         });
     });
 
