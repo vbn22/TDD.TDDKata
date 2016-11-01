@@ -1,6 +1,6 @@
 import assert from 'assert'
 
-function hasDelimiters(){
+function hasDelimiters(str){
     let result = 0;
     for (let value of str.split(',')){
         result += parseInt(value);
