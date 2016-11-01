@@ -2,11 +2,15 @@ import assert from 'assert'
 
 
 
-function add(value){
-    if (value == ""){
+function add(input){
+    let result = 0;
+    if (input == ""){
         return 0
     }
-    return value
+    for (let element of input.toString().split(',')){
+        result+= parseInt(element);
+    }
+    return result
 }
 
 suite('String Calculator testing', function () {
@@ -27,6 +31,16 @@ suite('String Calculator testing', function () {
             let sum = add(input);
 
             assert.equal(1, sum);
+        });
+    })
+
+    suite('two init numbers',function(){
+        test(' 1,2 value will return 3', function() {
+            let input = "1,2";
+            
+            let sum = add(input);
+
+            assert.equal(3, sum);
         });
     })
 
