@@ -37,10 +37,20 @@ suite('String Calculator testing', function () {
     suite('two init numbers',function(){
         test(' 1,2 value will return 3', function() {
             let input = "1,2";
-            
+
             let sum = add(input);
 
             assert.equal(3, sum);
+        });
+    })
+
+    suite('more that two init numbers',function(){
+        test(' 1,2,3 value will return 6', function() {
+            let input = "1,2,3";
+
+            let sum = add(input);
+
+            assert.equal(6, sum);
         });
     })
 
