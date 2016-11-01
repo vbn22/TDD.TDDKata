@@ -2,7 +2,7 @@ import assert from 'assert'
 
 function hasDelimiters(str){
     let result = 0;
-    for (let value of str.split(',')){
+    for (let value of str.split(/,|\n/)){
         result += parseInt(value);
     }
     return result;
@@ -31,4 +31,13 @@ suite('String Calculator testing', function () {
             assert.equal(6, sum);
         });
     });
+
+    suite('when input string has several delimiters', function () {
+        test('for 1\\n2,3 as input string it will return 6', function() {
+            let input = '1\n2,3';
+            let sum = add(input);
+            assert.equal(6, sum);
+        });
+    });
+
 });
