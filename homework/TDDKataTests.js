@@ -5,18 +5,27 @@ function getCustomDelimiters(str){
     return str.match(/\/\/(.*)\n/);
 }
 
-function hasDelimiters(str){
+function iterate(str,delimiters) {
     let result = 0;
-    let delimiters = /,|\n/;
-    if (str.indexOf('//') > -1){
-        delimiters = getCustomDelimiters(str);
-        str = str.replace(delimiters[0],'');
-        delimiters = delimiters[1];
-    }
     for (let value of str.split(delimiters)){
         result += parseInt(value);
     }
     return result;
+}
+
+function hasCustomDelimiters(str){
+    let result = getCustomDelimiters(str);
+    str = str.replace(result[0],'');
+    return iterate(str,result[1])
+}
+
+function hasDelimiters(str){
+    let delimiters = /,|\n/;
+    if (str.indexOf('//') > -1){
+        return hasCustomDelimiters(str)
+    } else {
+        return iterate(str,delimiters)
+    }
 }
 
 function add(str){
