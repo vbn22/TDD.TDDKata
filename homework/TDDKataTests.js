@@ -22,11 +22,19 @@ suite('String Calculator testing', function () {
         });
     });
 
-    suite('when input is numbers', function () {
+    suite('when input is two numbers', function () {
         test('for 1,2 as input string it will return 3', function() {
             let input = '1,2';
             let sum = add(input);
             assert.equal(3, sum);
+        });
+    });
+
+    suite('when input is several numbers', function () {
+        test('for 1,2,3 as input string it will return 6', function() {
+            let input = '1,2,3';
+            let sum = add(input);
+            assert.equal(6, sum);
         });
     });
 });
