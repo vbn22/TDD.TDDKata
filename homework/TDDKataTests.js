@@ -13,8 +13,22 @@ function get_numbers(str){
     }
 }
 
+function check_negative(str){
+    let error_values = []
+    for (let i of get_numbers(str)){
+        let number = parseInt(i);
+        if (number < 0){
+            error_values.push(i)
+        }
+    }
+    if (error_values.length > 0){
+        throw new Error('negatives not allowed, negatives values:'+','.join(error_values));
+    }
+}
+
 function add_numbers(str){
     let result = 0;
+    check_negative(str);
     for (let i of get_numbers(str)){
         result += parseInt(i);
     }
@@ -68,6 +82,14 @@ suite('String Calculator testing', function () {
             let input = '//;\n1;2;3';
             let sum = add(input);
             assert.equal(1+2+3, sum);
+        });
+    });
+
+    suite('when input contain negative values', function () {
+        test('for //;\\n-1;-2;3 as input string it will throw exception', function() {
+            let input = '//;\n-1;-2;3';
+            assert.throws( function() { add(input); }, Error );
+
         });
     });
 });
