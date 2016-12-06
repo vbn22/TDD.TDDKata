@@ -1,9 +1,16 @@
 import assert from 'assert'
 
 
+
+
 function get_numbers(str){
-    let delimiters = /,|\n/;
-    return str.split(delimiters);
+    let delimiters =  str.match(/\/\/(.*)\n/);
+    if (delimiters == null){
+        return str.split(/,|\n/);
+    } else {
+        let new_str = str.replace(delimiters[0],'');
+        return new_str.split(delimiters[1]);
+    }
 }
 
 function add_numbers(str){
@@ -36,7 +43,7 @@ suite('String Calculator testing', function () {
         test('for 1,2 as input string it will return 3', function() {
             let input = '1,2';
             let sum = add(input);
-            assert.equal(3, sum);
+            assert.equal(1+2, sum);
         });
     });
 
@@ -44,7 +51,7 @@ suite('String Calculator testing', function () {
         test('for 1,2,3 as input string it will return 6', function() {
             let input = '1,2,3';
             let sum = add(input);
-            assert.equal(6, sum);
+            assert.equal(1+2+3, sum);
         });
     });
 
@@ -52,7 +59,15 @@ suite('String Calculator testing', function () {
         test('for 1\n2,3 as input string it will return 6', function() {
             let input = '1\n2,3';
             let sum = add(input);
-            assert.equal(6, sum);
+            assert.equal(1+2+3, sum);
+        });
+    });
+
+    suite('when input contain custom delimiters', function () {
+        test('for //;\\n1;2;3 as input string it will return 6', function() {
+            let input = '//;\n1;2;3';
+            let sum = add(input);
+            assert.equal(1+2+3, sum);
         });
     });
 });
